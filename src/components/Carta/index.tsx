@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface GameCardProps {
   name: string;
   description: string;
@@ -8,7 +6,7 @@ interface GameCardProps {
   released_date: string;
 }
 
-const GameCard: React.FC<GameCardProps> = ({ name, description, developer, publisher, released_date }) => {
+const GameCard = ({ name, description, developer, publisher, released_date }: GameCardProps) => {
   return (
     <div className="game-card">
       <h2>{name}</h2>
@@ -21,3 +19,4 @@ const GameCard: React.FC<GameCardProps> = ({ name, description, developer, publi
 };
 
 export default GameCard;
+
