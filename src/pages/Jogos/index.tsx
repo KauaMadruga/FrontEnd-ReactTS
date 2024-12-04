@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
-import GameCard from '../../components/Carta/index'; // Importando o GameCard
+import GameCard from '../../components/Carta/index';
 
+// Define a estrutura do objeto Game
 interface Game {
   id: string;
   name: string;
@@ -13,10 +14,12 @@ interface Game {
 }
 
 const Jogos = () => {
+  // Estados para armazenar os jogos e o texto de busca
   const [games, setGames] = useState<Game[]>([]);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
+    // useEffect para buscar os dados da API quando o componente for montado
     const fetchGames = async () => {
       try {
         const response = await axios.get('https://zelda.fanapis.com/api/games?limit=100');
@@ -25,10 +28,11 @@ const Jogos = () => {
         console.error('Erro ao carregar os jogos.');
       }
     };
-
+  
     fetchGames();
-  }, []);
+  },[]); 
 
+  // Filtra os jogos com base no texto de busca inserido
   const filteredGames = games.filter((game) =>
     game.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -65,4 +69,3 @@ const Jogos = () => {
 };
 
 export default Jogos;
-

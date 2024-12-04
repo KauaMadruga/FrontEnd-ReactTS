@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
 
+// Define a interface para o tipo Character
 interface Character {
   id: string;
   name: string;
@@ -11,9 +12,11 @@ interface Character {
 }
 
 const Characters = () => {
+  // Estado para armazenar os personagens e o texto de busca
   const [characters, setCharacters] = useState<Character[]>([]);
   const [search, setSearch] = useState<string>('');
 
+  // useEffect para buscar dados ao montar o componente
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
@@ -25,8 +28,9 @@ const Characters = () => {
     };
 
     fetchCharacters();
-  }, []);
+  },[]);
 
+  // Filtra os personagens com base no texto de busca
   const filteredCharacters = characters.filter((character) =>
     character.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -45,7 +49,7 @@ const Characters = () => {
       <div className="character-list">
         {filteredCharacters.length > 0 ? (
           filteredCharacters.map((character) => (
-            <div key={character.id} className="character-card">
+            <div key={character.id}>
               <h2>{character.name}</h2>
               <p><strong>Descrição:</strong> {character.description || 'Descrição não disponível'}</p>
               <p><strong>Gênero:</strong> {character.gender || 'Desconhecido'}</p>
