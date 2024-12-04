@@ -1,8 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import './index.css';
 
-const Nav: React.FC = () => {
+const Nav = () => {
   return (
     <nav className="navbar">
       <ul>
